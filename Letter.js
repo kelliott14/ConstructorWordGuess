@@ -1,7 +1,7 @@
 function Letter(letter){
     this.letter = letter;
     this.value = letter.length;
-    this.guessed = false;
+    this.guessed;
     this.letterDisplay = function(){
         if(this.guessed){
             return letter
