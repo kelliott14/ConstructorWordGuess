@@ -15,13 +15,25 @@ function Word(word){
             return item.letterDisplay()
         }).join(" ")
     }
+    this.guess = function(i){
+        this.wordArr.forEach(function(item){
+            item.checkGuess(i);
+        })
+    }
 }
 
+module.exports = Word;
 
 
-var testWord = new Word("word")
 
-testWord.letters();
-console.log(testWord.wordArr)
-testWord.wordDisplay()
-console.log(testWord.display)
+
+// var testWord = new Word("word")
+
+// testWord.letters();
+// console.log(testWord.wordArr)
+// testWord.wordDisplay()
+// console.log(testWord.display)
+
+// testWord.guess("d");
+// testWord.wordDisplay()
+// console.log(testWord.display)
