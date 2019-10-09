@@ -3,6 +3,9 @@ var inquirer = require("inquirer");
 
 //testing
 var newWord = new Word("test");
+// console.log(newWord.word)
+// console.log(newWord.letters())
+// console.log(newWord.wordDisplay())
 
 //start game
 var rounds = 0;
@@ -13,7 +16,7 @@ userGuess();
 
 function indexWordDisplay(){
     newWord.wordDisplay();
-    console.log("Guess this: " + newWord.display);
+    console.log("Guess this word: " + newWord.display);
 }
 
 function userGuess(){
