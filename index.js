@@ -21,7 +21,7 @@ function indexWordDisplay(){
 
 function userGuess(){
 
-    if (rounds < 10){
+    if (rounds < 5){
         inquirer.prompt([
             {
                 message: "Pick a letter",
@@ -30,11 +30,27 @@ function userGuess(){
             }
         ]).then(function(answer){
             
-            newWord.guess(answer.guess)
+            newWord.guess(answer.guess);
             indexWordDisplay();
-           
             rounds++
-            userGuess(); 
+           
+            var re = new RegExp(answer.guess, "g")
+            if(!newWord.display.match(re)){
+                console.log("Incorrect guess")
+                userGuess(); 
+            }else{
+                console.log("Correct guess!")
+                userGuess(); 
+            }
+
+
+
+
+
+
+            
+
+            
             
         });
         
