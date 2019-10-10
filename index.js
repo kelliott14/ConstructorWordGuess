@@ -1,5 +1,6 @@
 var Word = require("./Word");
 var inquirer = require("inquirer");
+var randomWords = require("random-words");
 
 var rounds;
 var newWord;
@@ -12,7 +13,7 @@ var availableLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "
 // console.log(newWord.letters())
 // console.log(newWord.wordDisplay())
 
-startGame("test");
+startGame(randomWords());
 
 
 //start game function
@@ -108,7 +109,7 @@ function userGuess(){
         ]).then(function(answer){
             if(answer.confirm){
                 console.log("\n\n...loading another round...\n\n")
-                startGame("second");
+                startGame(randomWords());
             }else{
                 console.log("\nok bye!\n")
             }
