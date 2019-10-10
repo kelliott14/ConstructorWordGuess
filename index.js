@@ -16,7 +16,7 @@ userGuess();
 
 function indexWordDisplay(){
     newWord.wordDisplay();
-    console.log("Guess this word: " + newWord.display);
+    console.log("Guess this word: " + newWord.display + "\n");
 }
 
 function userGuess(){
@@ -31,20 +31,22 @@ function userGuess(){
         ]).then(function(answer){
             
             newWord.guess(answer.guess);
-            indexWordDisplay();
             rounds++
            
             var re = new RegExp(answer.guess, "g")
 
             if(!newWord.display.match(/_/g)){
                 console.log("You guessed it!")
+                indexWordDisplay();
 
             } else if(!newWord.display.match(re)){
-                console.log("Incorrect guess, try again")
+                console.log("\n------------------------------------\nIncorrect guess, try again...")
+                indexWordDisplay();
                 userGuess(); 
 
             }else{
-                console.log("Correct guess, keep going!")
+                console.log("\n------------------------------------\nCorrect guess, keep going!")
+                indexWordDisplay();
                 userGuess(); 
             }
             
