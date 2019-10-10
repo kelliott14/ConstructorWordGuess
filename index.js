@@ -2,7 +2,8 @@ var Word = require("./Word");
 var inquirer = require("inquirer");
 
 var rounds;
-var newWord
+var newWord;
+var guessedLetters = [];
 
 //testing
 //var newWord = new Word("test");
@@ -17,6 +18,7 @@ startGame("test");
 function startGame(word){
     newWord = new Word(word);
     rounds = 0;
+    guessedLetters = [];
     newWord.letters();
     indexWordDisplay();
     userGuess();
@@ -42,30 +44,42 @@ function userGuess(){
                 console.log("...you forgot to pick a letter, type a letter THEN press enter...")
                 userGuess();
             }else{
-
                 
                 var validGuess = answer.guess.toLowerCase();
-                newWord.guess(validGuess);
-                rounds++
                 
-                var re = new RegExp(validGuess, "g")
+                var alreadyGuessed = guessedLetters.find(function(element){
+                    return element == validGuess
+                });
                 
-                if(!newWord.display.match(/_/g)){
-                    console.log("You guessed it!")
-                    indexWordDisplay();
-                    playAgain();
-                    
-                } else if(!newWord.display.match(re)){
-                    console.log("\n------------------------------------\nIncorrect guess, try again...\n")
-                    indexWordDisplay();
-                    userGuess(); 
-                    
+                if (alreadyGuessed){
+                    console.log("...you've already guessed that letter, try a different one!")
+                    userGuess();
                 }else{
-                    console.log("\n------------------------------------\nCorrect guess, keep going!\n")
-                    indexWordDisplay();
-                    userGuess(); 
+                    
+                    guessedLetters.push(answer.guess);
+                    
+                    newWord.guess(validGuess);
+                    rounds++
+                    
+                    var re = new RegExp(validGuess, "g")
+                    
+                    if(!newWord.display.match(/_/g)){
+                        console.log("\nYou guessed it!\n")
+                        indexWordDisplay();
+                        playAgain();
+                        
+                    }else if(!newWord.display.match(re)){
+                        console.log("\n------------------------------------\nIncorrect guess, try again...\n")
+                        indexWordDisplay();
+                        userGuess(); 
+                        
+                    }else{
+                        console.log("\n------------------------------------\nCorrect guess, keep going!\n")
+                        indexWordDisplay();
+                        userGuess(); 
+                    }
+                    
                 }
-                
             }
         });
         
