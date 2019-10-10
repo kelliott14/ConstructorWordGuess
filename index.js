@@ -69,18 +69,19 @@ function userGuess(){
                         guessedLetters.push(answer.guess);
                         
                         newWord.guess(validGuess);
-                        rounds++
+                        
                         
                         var re = new RegExp(validGuess, "g")
                         
                         if(!newWord.display.match(/_/g)){
                             console.log("\nYou guessed it!\n")
-                            indexWordDisplay();
+                            console.log("The word: " + newWord.display + "\n");
                             playAgain();
                             
                         }else if(!newWord.display.match(re)){
                             console.log("\n------------------------------------\nIncorrect guess, try again...\n")
                             indexWordDisplay();
+                            rounds++
                             userGuess(); 
                             
                         }else{
