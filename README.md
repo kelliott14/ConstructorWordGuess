@@ -13,4 +13,4 @@ The game will validate letters guessed to ensure:
 - a letter has been selected
 - the character selected is a letter
 - the letter has not already been selected
-The answers are also not case sensitive
+- the answers are not case sensitive
